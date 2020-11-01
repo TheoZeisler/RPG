@@ -8,15 +8,11 @@ namespace RPG.Game.Character.CharacterClass.Items.Inventory.Equipment.Arms.Bow
 {
     class Bow : Arms
     {
-        public Bow(int strength, string name)
+        public Bow(int strength, string name, int price)
         {
             this.strength = strength;
             this.name = name;
-        }
-        protected int Strength
-        {
-            get => strength;
-            set => strength = value;
+            this.price = price;
         }
     }
 }

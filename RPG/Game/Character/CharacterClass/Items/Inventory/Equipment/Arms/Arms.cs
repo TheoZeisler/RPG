@@ -10,7 +10,12 @@ namespace RPG.Game.Character.CharacterClass.Items.Inventory.Equipment.Arms
     {
         protected int strength;
 
-        
+        public int Strength
+        {
+            get => strength;
+            private set => strength = value;
+        }
+
     }
     
 }

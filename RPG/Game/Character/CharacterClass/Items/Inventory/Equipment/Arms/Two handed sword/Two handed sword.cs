@@ -8,16 +8,12 @@ namespace RPG.Game.Character.CharacterClass.Items.Inventory.Equipment.Arms.Two_h
 {
     class Two_handed_sword : Arms
     {
-        public Two_handed_sword(int strength, string name)
+        public Two_handed_sword(int strength, string name, int price)
         {
             this.strength = strength;
             this.name = name;
+            this.price = price;
         }
 
-        protected int Strength
-        {
-            get => strength;
-            set => strength = value;
-        }
     }
 }

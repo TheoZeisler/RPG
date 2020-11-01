@@ -8,15 +8,17 @@ namespace RPG.Game.Character.CharacterClass.Items.Inventory.Equipment.Armor.Boot
 {
     class Boots : Armor
     {
-        public Boots(int armor, string v)
+        public Boots(int armor, string name, int price)
         {
             this.armor = armor;
+            this.price = price;
+            this.name = name;
         }
 
-        protected int Armor
+        public int Armor
         {
             get => armor;
-            set => armor = value;
+            private set => armor = value;
         } 
     }
 }

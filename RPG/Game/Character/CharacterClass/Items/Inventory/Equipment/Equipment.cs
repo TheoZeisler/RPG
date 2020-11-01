@@ -8,13 +8,7 @@ namespace RPG .Game.Character.CharacterClass.Items.Inventory.Equipment
 {
     class Equipment : Items
     {
-        protected int lvlRequire;
 
-        public string Name
-        {
-            get => name;
-            protected set => name = value;
-        }
 
     }
 

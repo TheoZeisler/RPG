@@ -17,7 +17,8 @@ namespace RPG.Game.Character.CharacterClass.PlayerClass.Archer
             hp = constitution * lvl * 5;
             hpMax = hp;
             mana = intel * lvl * 2;
-            Inventory inventory = new Inventory();
+            money = 50;
+            xpMax = 100;
         }
         
     }

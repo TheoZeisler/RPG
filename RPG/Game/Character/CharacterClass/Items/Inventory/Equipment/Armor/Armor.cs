@@ -9,6 +9,11 @@ namespace RPG.Game.Character.CharacterClass.Items.Inventory.Equipment.Armor
     class Armor : Equipment
     {
         protected int armor;
+        public int ArmorPoint
+        {
+            get => armor;
+            private set => armor = value;
+        }
 
     }
 }

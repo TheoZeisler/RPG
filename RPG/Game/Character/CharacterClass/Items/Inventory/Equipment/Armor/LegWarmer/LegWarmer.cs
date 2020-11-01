@@ -8,16 +8,17 @@ namespace RPG.Game.Character.CharacterClass.Items.Inventory.Equipment.Armor.LegW
 {
     class LegWarmer : Armor
     {
-        public LegWarmer(int armor, string name)
+        public LegWarmer(int armor, string name, int price)
         {
             this.armor = armor;
             this.name = name;
+            this.price = price;
         }
 
-        protected int Armor
+        public int Armor
         {
             get => armor;
-            set => armor = value;
+            private set => armor = value;
         }
     }
 }
