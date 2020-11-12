@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace RPG.Game.Character
 {
 
-    class Character 
+    public class Character 
     {
         protected int lvl = 1;
         protected int strength = 1;

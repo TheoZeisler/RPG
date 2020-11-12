@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace RPG.Game.Character.CharacterClass
 {
-    class Player : Character, IAttack, IDefense
+    public class Player : Character, IAttack, IDefense
     {
         protected int hp;
         protected int hpMax;

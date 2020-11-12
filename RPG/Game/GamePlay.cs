@@ -2,7 +2,6 @@
 using RPG.Game.Character.CharacterClass;
 using RPG.Game.Character.CharacterClass.Items;
 using RPG.Game.Character.CharacterClass.Items.Inventory;
-using RPG.Game.Character.CharacterClass.PlayerClass;
 using RPG.Game.Character.CharacterClass.PlayerClass.Archer;
 using RPG.Game.Character.CharacterClass.PlayerClass.Barbare;
 using RPG.Game.Character.CharacterClass.PlayerClass.Mage;

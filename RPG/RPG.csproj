@@ -118,5 +118,11 @@
   <ItemGroup>
     <Content Include="Saves\Save1.txt" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MyLib\MyLib.csproj">
+      <Project>{6fcb9643-d955-4be9-84f2-53b36bf70ab2}</Project>
+      <Name>MyLib</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
