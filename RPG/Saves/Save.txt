@@ -1,0 +1,14 @@
+{
+  "Lvl": 1,
+  "Money": 15,
+  "HpMax": 40,
+  "Hp": 40,
+  "Strength": 11,
+  "Dexterity": 1,
+  "Intel": 5,
+  "Constitution": 8,
+  "Armor": 0,
+  "Name": "Azz",
+  "CurrentXp": 0,
+  "XpMax": 100
+}

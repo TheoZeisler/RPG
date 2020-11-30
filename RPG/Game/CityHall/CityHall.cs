@@ -1,50 +1,70 @@
-﻿using RPG.Game.Character.CharacterClass;
-using RPG.Game.Character.CharacterClass.Items;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Xml.Linq;
-using System.Text.Json;
-using System.Text.Json.Serialization;
+using MyLib.Game.Character.Items;
+using MyLib.Game.Character.CharacterClass;
+using Newtonsoft.Json;
 
 namespace RPG.Game.CityHall
 {
     class CityHall
     {
         //Fonction d'intro de la mairie 
-        public void enter(Player p, GamePlay gamePlay, List<Items> inventory)
+        public void enter(Player p, GamePlay gamePlay, List<Items> inventory, Shop shop)
         {
             Console.WriteLine("Bienvenue " + p.Name + " dans la mairie. Ici tu peux sauvegarder ta partie.\n1- Sauvegarder\n2- Retour");
             switch (gamePlay.verif(2))
             {
                 case 1:
-                    save(p, gamePlay, inventory);
+                    save(p, gamePlay, inventory, shop);
                     break;
                 case 2:
                     break;
             }
         }
         //Fonction qui sauvegarde la partie dans un fichier json
-        public void save(Player p, GamePlay gamePlay, List<Items> inventory)
+        public void save(Player p, GamePlay gamePlay, List<Items> inventory, Shop shop)
         {
-            byte[] player;
-            string inv;
-            var options = new JsonSerializerOptions
+            //Sauvegarde Player
+            string jsonPlayer = JsonConvert.SerializeObject(p, Formatting.Indented);
+            string settingsPathSave = @"C:\Users\Théo\Desktop\c#\RPG\RPG\Saves\Save.txt";
+            if (File.Exists(settingsPathSave))
             {
-                WriteIndented = true
-            };
-            player = JsonSerializer.SerializeToUtf8Bytes(p, options); 
-            inv = JsonSerializer.Serialize(inventory, options);
-            string settingsPath = @"C:\Users\Théo\Desktop\RPG\RPG\RPG\Saves\Save1.txt";
-            File.WriteAllBytes(settingsPath, player);
-            File.AppendAllText(settingsPath, inv);
+                File.Delete(settingsPathSave);
+            }   
+            File.Create(settingsPathSave).Dispose();
+            using (TextWriter tw = new StreamWriter(settingsPathSave))
+            {
+                tw.WriteLine(jsonPlayer);
+            }
+            //Sauvegarde Inventaire
+            string jsonInventory = JsonConvert.SerializeObject(inventory, Formatting.Indented);
+            string settingsPathInventory = @"C:\Users\Théo\Desktop\c#\RPG\RPG\Saves\Inventory.txt";
+            if (File.Exists(settingsPathInventory))
+            {
+                File.Delete(settingsPathInventory);
+            }
+            File.Create(settingsPathInventory).Dispose();
+            using (TextWriter tw = new StreamWriter(settingsPathInventory))
+            {
+                tw.WriteLine(jsonInventory);
+            }
+            //Sauvegarde Shop
+            string jsonShop = JsonConvert.SerializeObject(shop, Formatting.Indented);
+            string settingsPathShop = @"C:\Users\Théo\Desktop\c#\RPG\RPG\Saves\Shop.txt";
+            if (File.Exists(settingsPathShop))
+            {
+                File.Delete(settingsPathShop);
+            }
+            File.Create(settingsPathShop).Dispose();
+            using (TextWriter tw = new StreamWriter(settingsPathShop))
+            {
+                tw.WriteLine(jsonShop);
+            }
             Console.ForegroundColor = ConsoleColor.Blue;
             Console.WriteLine("Votre partie à été sauvegarder");
             Console.ResetColor();
-            enter(p, gamePlay, inventory);
+            enter(p, gamePlay, inventory, shop);
         }
     }
 }

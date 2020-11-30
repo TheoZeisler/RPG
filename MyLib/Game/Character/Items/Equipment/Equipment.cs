@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MyLib.Game.Character.Items.Equipment
 {
-    class Equipment : Items
+    public class Equipment : Items
     {
 
 

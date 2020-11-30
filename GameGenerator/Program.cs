@@ -8,7 +8,6 @@ namespace GameGenerator
 {
     class Program
     {
-        private 
         static void Main(string[] args)
         {
             CrudMonster cM = new CrudMonster();
@@ -20,7 +19,7 @@ namespace GameGenerator
                                 "1- Crud monster (Create / Read / Update / Delete)\n" +
                                 "2- Crud shop\n" +
                                 "3- Quitter");
-                switch (verif(2))
+                switch (verif(3))
                 {
                     case 1:
                         cM.monsterManager();

@@ -1,12 +1,9 @@
-﻿using RPG.Game.Character;
-using RPG.Game.Character.CharacterClass;
-using RPG.Game.Character.CharacterClass.Items;
-using RPG.Game.Character.CharacterClass.Items.Inventory.Consumable.Potion;
+﻿using MyLib.Game.Character.CharacterClass;
+using MyLib.Game.Character.Items;
+using MyLib.Game.Character.Items.Consumable.Potion;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace RPG
 {
@@ -32,7 +29,7 @@ namespace RPG
             bool turn = true;
             bool fight = true;
             Console.ForegroundColor = ConsoleColor.Red;
-            Console.WriteLine("Vous avez été agressé par un monstre !\nVous entrez en combat !\n");
+            Console.WriteLine("Vous avez été agressé par un "+ monster.Name +" !\nVous entrez en combat !\n");
             while (fight)
             {   
                 if (turn)
@@ -84,7 +81,7 @@ namespace RPG
                     monster.Hp = 0;
                 }
                 Console.ForegroundColor = ConsoleColor.Blue;
-                Console.WriteLine("\n\nVous avez attaqué le monstre !\nIl subit " + attack + " points de dégats. Il lui reste " + monster.Hp + " pv");
+                Console.WriteLine("\n\nVous avez attaqué le  " + monster.Name + " !\nIl subit " + attack + " points de dégats. Il lui reste " + monster.Hp + " pv");
             }
             else
             {
@@ -159,8 +156,11 @@ namespace RPG
             else if (monster.Hp == 0)
             {
                 Console.ForegroundColor = ConsoleColor.Yellow;
-                Console.WriteLine("------\n\nVictoire ! Vous avez tué le monstre ! Vous avez gagné " + (10 * nbFight) + " deniers et " + (50 * nbFight) + "xp\n");
+                Console.WriteLine("------\n\nVictoire ! Vous avez tué le  " + monster.Name + " ! Vous avez gagné " + (10 * nbFight) + " deniers et " + (50 * nbFight) + "xp\n");
                 Console.ResetColor();
+                monster.Hp = monster.HpMax;
+                Console.WriteLine(monster.Hp + " aaaa  " + monster.HpMax);
+                //monster.removeMonsterIfDead();
                 player.CurrentXp += 50 * nbFight;
                 if(player.CurrentXp >= player.XpMax)
                 {
@@ -183,12 +183,12 @@ namespace RPG
                     player.Hp = 0;
                 }
                 Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine("------\n\nLe monstre vous a attaqué !\nVous avez subit " + attack + " points de dégats. Il vous reste " + player.Hp + " pv");
+                Console.WriteLine("------\n\nLe  " + monster.Name + " vous a attaqué !\nVous avez subit " + attack + " points de dégats. Il vous reste " + player.Hp + " pv");
             }
             else
             {
                 Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine("------\n\nLe monstre vous a loupé ! Il vous reste " + player.Hp + " pv");
+                Console.WriteLine("------\n\nLe  " + monster.Name + " vous a loupé ! Il vous reste " + player.Hp + " pv");
             }
         }
 
@@ -200,7 +200,7 @@ namespace RPG
             {
                 case 1:
                     nbFight++;
-                    Fight f = new Fight(player, monster.createMonster(), nbFight, inventory);
+                    Fight f = new Fight(player, monster.getMonster(player), nbFight, inventory);
                     fight = !fight;
                     f.versus(gamePlay);
                     break;

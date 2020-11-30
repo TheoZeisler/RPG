@@ -1,0 +1,8 @@
+{
+  "ArmorPoint": 0,
+  "Strength": 0,
+  "Price": 0,
+  "Name": null,
+  "IsEquip": false,
+  "Health": 0
+}

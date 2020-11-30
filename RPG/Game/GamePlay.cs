@@ -1,21 +1,17 @@
-﻿using RPG.Game;
-using RPG.Game.Character.CharacterClass;
-using RPG.Game.Character.CharacterClass.Items;
-using RPG.Game.Character.CharacterClass.Items.Inventory;
-using RPG.Game.Character.CharacterClass.PlayerClass.Archer;
-using RPG.Game.Character.CharacterClass.PlayerClass.Barbare;
-using RPG.Game.Character.CharacterClass.PlayerClass.Mage;
-using RPG.Game.Character.CharacterClass.PlayerClass.Voleur;
+﻿using MyLib.Game.Character.CharacterClass;
+using MyLib.Game.Character.CharacterClass.PlayerClass.Archer;
+using MyLib.Game.Character.CharacterClass.PlayerClass.Barbare;
+using MyLib.Game.Character.CharacterClass.PlayerClass.Mage;
+using MyLib.Game.Character.CharacterClass.PlayerClass.Voleur;
 using RPG.Game.CityHall;
 using RPG.Game.Hostel;
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Security.Principal;
-using System.Text;
 using System.Text.Json;
-using System.Threading.Tasks;
+using MyLib.Game.Character.Items;
+using RPG.Game;
+using Newtonsoft.Json;
 
 namespace RPG
 {
@@ -115,12 +111,9 @@ namespace RPG
                     p = gamePlay.createPlayer(gamePlay.verif(4));
                     p.customization(p);
                     Inventory i = new Inventory(p);
-                    List<Items> inventory = i.getInventory();
-                    Monster m = new Monster();
                     Shop shop = new Shop();
-                    Hostel hostel = new Hostel(p);
-                    CityHall cityHall = new CityHall();
-                    game(p, m, shop, hostel, inventory, gamePlay, cityHall, i);
+                    List<Items> inventory = i.getInventory();
+                    game(p,shop, gamePlay, inventory, i);
                     break;
                 case 2:
                     load(gamePlay);
@@ -136,8 +129,12 @@ namespace RPG
             return p;
         }
         //Fonction du menu principal avec les diffèrents choix
-        public void game(Player p, Monster m, Shop shop, Hostel hostel, List<Items> inventory, GamePlay gamePlay, CityHall cityHall, Inventory i)
+        public void game(Player p,Shop shop, GamePlay gamePlay, List<Items> inventory, Inventory i)
         {
+            Monster m = new Monster();
+            Hostel hostel = new Hostel(p);
+            CityHall cityHall = new CityHall();
+            
             bool play = true;
             while (play)
             {
@@ -145,7 +142,7 @@ namespace RPG
                 switch (gamePlay.verif(7))
                 {
                     case 1:
-                        Fight fight = new Fight(p, m.createMonster(), 1, inventory);
+                        Fight fight = new Fight(p, m.getMonster(p), 1, inventory);
                         fight.versus(gamePlay);
                         break;
                     case 2:
@@ -155,7 +152,7 @@ namespace RPG
                         shop.enter(p, gamePlay, inventory);
                         break;
                     case 4:
-                        cityHall.enter(p, gamePlay, inventory);
+                        cityHall.enter(p, gamePlay, inventory, shop);
                         break;
                     case 5:
                         i.showInventory();
@@ -172,15 +169,21 @@ namespace RPG
         //Fonction qui permet de charger une partie
         public void load(GamePlay gamePlay)
         {
+            //Sauvegarde joueur
+            string pathSave = @"C:\Users\Théo\Desktop\c#\RPG\RPG\Saves\Save.txt";
+            string jsonSave = File.ReadAllText(pathSave);
+            Player p = JsonConvert.DeserializeObject<Player>(jsonSave);
+            //Sauvegarde inventaire
+            string pathinventory = @"C:\Users\Théo\Desktop\c#\RPG\RPG\Saves\Inventory.txt";
+            string jsonInventory = File.ReadAllText(pathinventory);
+            List<Items> inventory = JsonConvert.DeserializeObject<List<Items>>(jsonInventory);
+            //Sauvegarde joueur
+            string pathShop = @"C:\Users\Théo\Desktop\c#\RPG\RPG\Saves\Shop.txt";
+            string jsonShop = File.ReadAllText(pathShop);
+            Shop s = JsonConvert.DeserializeObject<Shop>(jsonShop);
+            Inventory i = new Inventory(p);
+            gamePlay.game(p, s, gamePlay, inventory, i);
 
-            byte[] jsonUtf8Bytes;
-            string settingsPath = @"C:\Users\Théo\Desktop\RPG\RPG\RPG\Saves\Save1.txt";
-            jsonUtf8Bytes = File.ReadAllBytes(settingsPath);
-            Console.WriteLine(jsonUtf8Bytes[0]);
-            p = JsonSerializer.Deserialize<Player>(jsonUtf8Bytes);
-            Console.WriteLine(p);
-            Console.ReadLine();
-            gamePlay.menu();
         }
     }
 }

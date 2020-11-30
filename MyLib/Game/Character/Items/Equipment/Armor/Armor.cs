@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MyLib.Game.Character.Items.Equipment.Armor
 {
-    class Armor : Equipment
+    public class Armor : Equipment
     {
         protected int armor;
         public int ArmorPoint

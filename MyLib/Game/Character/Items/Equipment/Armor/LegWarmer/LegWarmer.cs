@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MyLib.Game.Character.Items.Equipment.Armor.LegWarmer
 {
-    class LegWarmer : Armor
+    public class LegWarmer : Armor
     {
         public LegWarmer(int armor, string name, int price)
         {

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MyLib.Game.Character.Items.Equipment.Armor.Chestplate
 {
-    class Chestplate : Armor
+    public class Chestplate : Armor
     {
         public Chestplate(int armor, string name, int price)
         {

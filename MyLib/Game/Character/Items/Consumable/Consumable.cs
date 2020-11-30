@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MyLib.Game.Character.CharacterClass.Items.Inventory.Consumable
 {
-    class Consumable
+    public class Consumable
     {
     }
 }

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace MyLib.Game.Character.CharacterClass.PlayerClass.Barbare
 {
-    class Barbare : Player
+    public class Barbare : Player
     {
         public Barbare()
         {

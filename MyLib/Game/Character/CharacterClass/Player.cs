@@ -1,9 +1,5 @@
 ﻿using MyLib.Game.Character.CharracterInterfaces;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MyLib.Game.Character.CharacterClass
 {
@@ -108,6 +104,7 @@ namespace MyLib.Game.Character.CharacterClass
             Console.WriteLine(
                 "\nHp max : " + p.hpMax +
                 "\nHp actuel : " + p.hp +
+                "\nArmure : " + p.armor +
                 "\nForce : " + p.Strength +
                 "\nIntel : " + p.Intel +
                 "\nDexterité : " + p.dexterity +

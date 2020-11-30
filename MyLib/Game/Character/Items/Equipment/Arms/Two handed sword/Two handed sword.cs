@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MyLib.Game.Character.Items.Equipment.Arms.Two_handed_sword
 {
-    class Two_handed_sword : Arms
+    public class Two_handed_sword : Arms
     {
         public Two_handed_sword(int strength, string name, int price)
         {

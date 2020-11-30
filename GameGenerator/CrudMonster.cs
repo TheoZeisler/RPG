@@ -10,8 +10,6 @@ namespace GameGenerator
 {
     class CrudMonster
     {
-        private List<Monster> monsters;
-        private Monster m;
         private string serveur;
         private string database;
         private string uid;
@@ -215,18 +213,17 @@ namespace GameGenerator
                     Console.ForegroundColor = ConsoleColor.Red;
                     Console.WriteLine("Monstre modifié");
                     Console.ResetColor();
-                    monsterManager();
                     break;
                 case 2:
-                    monsterManager();
                     break;
             }
+            monsterManager();
         }
 
         public void deleteMonster()
         {
             int id;
-            Console.WriteLine("Suppression d'un monstre d'un monstre.");
+            Console.WriteLine("Suppression d'un monstre.");
             id = readMonster();
             
             Console.WriteLine("Etes vous sur de vouloir supprimer ce monstre ? (1- Oui/2- Non)\n");
@@ -242,20 +239,12 @@ namespace GameGenerator
                     Console.ForegroundColor = ConsoleColor.Red;
                     Console.WriteLine("Monstre supprimé");
                     Console.ResetColor();
-                    monsterManager();
                     break;
                 case 2:
-                    monsterManager();
                     break;
             }
 
             monsterManager();
-        }
-        public Monster getMonster(int id)
-        {
-            //Recup monster BBD
-            
-            return m;
         }
         public int verifIsDigit()
         {

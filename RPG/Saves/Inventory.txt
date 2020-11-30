@@ -1,0 +1,18 @@
+[
+  {
+    "Strength": 2,
+    "ArmorPoint": 0,
+    "Price": 0,
+    "Name": "Épée courte",
+    "IsEquip": false,
+    "Health": 0
+  },
+  {
+    "Strength": 5,
+    "ArmorPoint": 0,
+    "Price": 35,
+    "Name": "Arc Lavoine",
+    "IsEquip": true,
+    "Health": 0
+  }
+]

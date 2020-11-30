@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MyLib.Game.Character.Items.Equipment.Arms.Axe
 {
-    class Axe : Arms
+    public class Axe : Arms
     {
         public Axe(int strength, string name, int price)
         {
